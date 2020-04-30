@@ -6,14 +6,10 @@ module.exports = (app) => {
   });
 
   app.post('/api/notes', (req, res) => {
-    const reservation = req.body;
-    if (tableData.length < 5) {
-      tableData.push(reservation);
+    const notes = req.body;
+    
+      notesData.push(notes);
       res.json(true);
-    } else {
-      waitListData.push(reservation);
-      res.json(false);
-    }
   });
 
   app.post('/api/clear', function (req, res) {
