@@ -1,4 +1,4 @@
-const notesData = require('../data/notesData');
+const notesData = require('../db/notesData');
 
 module.exports = (app) => {
   app.get('/api/notes', (req, res) => {
