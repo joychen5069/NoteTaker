@@ -2,7 +2,7 @@ const notesData = require('../db/notesData');
 
 module.exports = (app) => {
   app.get('/api/notes', (req, res) => {
-    res.json(tableData);
+    res.json(notesData);
   });
 
   app.post('/api/notes', (req, res) => {
