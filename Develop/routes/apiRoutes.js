@@ -1,4 +1,4 @@
-const notesData = require('../db/notesData');
+const notesData = require('../db/db.json');
 
 module.exports = (app) => {
   app.get('/api/notes', (req, res) => {
@@ -12,10 +12,4 @@ module.exports = (app) => {
       res.json(true);
   });
 
-  app.post('/api/clear', function (req, res) {
-    // Empty out the arrays of data
-    notesData.length = 0;
-
-    res.json({ ok: true });
-  });
-};
+  };
