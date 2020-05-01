@@ -53,11 +53,14 @@ module.exports = (app) => {
 
     //delete files
     app.delete('/api/notes/:id', (req, res) => {
-        const notes = req.params.id;
-        console.log(notes)
-
-        //find ID and delete based on ID
-        const foundIndex = notesData.findIndex((el) => el.id = notes) -1;
+        console.log(notesData)
+        const indexNotes = parseInt(req.params.id);
+        console.log("index", indexNotes)
+      
+        //find ID and delete based on ID 
+        //THE -1 IS IMPORTANT DUE TO ZERO INDEX
+        const foundIndex = notesData.findIndex((el) => el.id === indexNotes);
+        console.log(foundIndex)
         notesData.splice(foundIndex, 1)
 
         //make sure an empty array remains when you delete, otherwise it'll throw errors
