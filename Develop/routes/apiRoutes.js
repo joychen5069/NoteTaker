@@ -9,7 +9,12 @@ module.exports = (app) => {
         // console.log(notesData)
 
         //if no notes are stored, set notesData to reset
-        res.json(notesData);
+        if (notesData === null) {
+            res.json(reset)
+        }
+        else {
+        res.json(notesData)
+    }
     });
 
     //post the notes after they've been submitted
@@ -33,7 +38,6 @@ module.exports = (app) => {
             let json = JSON.parse(notesData)
             console.log(json)
             json.push(notes)
-            
 
             fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(json), "utf8", function (error) {
 
@@ -61,7 +65,7 @@ module.exports = (app) => {
         const foundIndex = notesData.findIndex((el) => el.id = notes)
         notesData.splice(foundIndex, 1)
 
-        fs.writeFile(path.join(__dirname, '../db/db.json'), notesData, function (error) {
+        fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(notesData), function (error) {
             if (error) {
                 console.log(error)
             }
