@@ -21,16 +21,19 @@ As a user, I want to be able to write and save notes, as well as delete them, so
   
 ## Installation
 
-To use this application, run the following commands in your terminal to install the appropriate packages
+To use this application, run the following commands in your terminal to install the appropriate packages if you are not using the webbased application
 
-    npm i inquirer
+    npm i 
 
 ## Usage 
 
 After you've installed the packages, The user opens up their terminal and runs the command
    
-    node index.js
+    node server.js
 
+OR
+
+visit https://joynotetaker.herokuapp.com/
 
 ## License
 [![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0) 
@@ -40,6 +43,6 @@ After you've installed the packages, The user opens up their terminal and runs t
 
 ## Questions
   
-If you see any improvements that can be made, please email me at joychen5069@gmail.com. You can also visit my GitHub page at https://github.com/joychen5069 or visit the Date Night page at https://github.com/joychen5069/ReadMe-Generator
+If you see any improvements that can be made, please email me at joychen5069@gmail.com. You can also visit my GitHub page at https://github.com/joychen5069 or visit the Date Night page at https://github.com/joychen5069/NoteTaker
 
   
