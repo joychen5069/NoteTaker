@@ -57,7 +57,7 @@ module.exports = (app) => {
         console.log(notes)
 
         //find ID and delete based on ID
-        const foundIndex = notesData.findIndex((el) => el.id = notes)
+        const foundIndex = notesData.findIndex((el) => el.id = notes) -1;
         notesData.splice(foundIndex, 1)
 
         //make sure an empty array remains when you delete, otherwise it'll throw errors
