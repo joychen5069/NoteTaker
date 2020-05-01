@@ -39,7 +39,7 @@ visit https://joynotetaker.herokuapp.com/
 [![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0) 
 
 ## Demo
-![Demo](assets/ReadMe-Demo.gif)
+![Demo](demo/ReadMe-Demo.gif)
 
 ## Questions
   

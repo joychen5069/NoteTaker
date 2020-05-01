@@ -1,7 +1,6 @@
 const notesData = require('../db/db.json');
-const reset = require('../db/dbReset.json')
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
 module.exports = (app) => {
     //get the notes already stored

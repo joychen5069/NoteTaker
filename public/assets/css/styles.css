@@ -4,6 +4,14 @@ html, body {
   padding: 0;
 }
 
+h1 {
+  font-weight: bold !important;
+}
+
+.navbar {
+  background-color: rgb(39, 39, 253) !important;
+}
+
 .save-note {
   display: none;
 }
