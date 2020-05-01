@@ -1,18 +1,20 @@
 const notesData = require('../db/db.json');
-const fs = require("fs")
-const path = require("path")
+const reset = require('../db/dbReset.json')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = (app) => {
     //get the notes already stored
     app.get('/api/notes', (req, res) => {
-        console.log(notesData)
+        // console.log(notesData)
+
+        //if no notes are stored, set notesData to reset
         res.json(notesData);
     });
 
     //post the notes after they've been submitted
     app.post('/api/notes', (req, res) => {
         const notes = req.body;
-        console.log(notesData)
 
         //if user deletes all data, make sure they can still add notes
         if (notesData.length === 0) {
@@ -23,33 +25,24 @@ module.exports = (app) => {
         }
 
         //read the JSON files
-        fs.readFile(path.join(__dirname, '../db/db.json'), "utf8", function (error, notesData) {
-            if (error) {
-                console.log(error)
-            }
+        fs.readFile(path.join(__dirname, '../db/db.json'), 'utf8', function (error, notesData) {
+            //need to write code if db.json is empty at the start of the server
 
-            if(notesData === null) {
-                fs.writeFile(path.join(__dirname, '../db/db.json'), notesData, "utf8", function (error) {
-
-                    if (error) {
-                        console.log(error)
-                    }
-                }
-                )
-            }
-            else {
-            
+            console.log(notesData)
             //write to JSON file so notes retain unless deleted
-           
-            json = JSON.stringify(notes)
+            let json = JSON.parse(notesData)
+            console.log(json)
+            json.push(notes)
+            
 
-            fs.writeFile(path.join(__dirname, '../db/db.json'), json, "utf8", function (error) {
+            fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(json), "utf8", function (error) {
 
                 if (error) {
                     console.log(error)
                 }
             }
-            )}
+            )
+            // console.log(notes)
         }
 
         );
