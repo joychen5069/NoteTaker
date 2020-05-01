@@ -6,15 +6,9 @@ const path = require('path')
 module.exports = (app) => {
     //get the notes already stored
     app.get('/api/notes', (req, res) => {
-        // console.log(notesData)
-
-        //if no notes are stored, set notesData to reset
-        if (notesData === null) {
-            res.json(reset)
-        }
-        else {
+        //get array from db.json
         res.json(notesData)
-    }
+    
     });
 
     //post the notes after they've been submitted
@@ -34,7 +28,7 @@ module.exports = (app) => {
             //need to write code if db.json is empty at the start of the server
 
             console.log(notesData)
-            //write to JSON file so notes retain unless deleted
+            //write to JSON file and stringify so notes retain unless deleted
             let json = JSON.parse(notesData)
             console.log(json)
             json.push(notes)
@@ -44,6 +38,7 @@ module.exports = (app) => {
                 if (error) {
                     console.log(error)
                 }
+                console.log("written successfully")
             }
             )
             // console.log(notes)
@@ -65,10 +60,12 @@ module.exports = (app) => {
         const foundIndex = notesData.findIndex((el) => el.id = notes)
         notesData.splice(foundIndex, 1)
 
+        //make sure an empty array remains when you delete, otherwise it'll throw errors
         fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(notesData), function (error) {
             if (error) {
                 console.log(error)
             }
+        console.log("deleted successfully")
         }
         )
         res.json(true);
