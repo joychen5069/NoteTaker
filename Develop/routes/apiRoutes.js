@@ -1,4 +1,6 @@
 const notesData = require('../db/db.json');
+const fs = require("fs")
+const path = require("path")
 
 module.exports = (app) => {
     //get the notes already stored
@@ -11,13 +13,30 @@ module.exports = (app) => {
   app.post('/api/notes', (req, res) => {
     const notes = req.body;
         console.log(notesData)
-    if (notesData.length === 0) {
-        notes.id = 1
-    }
-    else {
-    notes.id = notesData[notesData.length -1].id + 1
-    }
+   
       notesData.push(notes);
+      fs.readFile(path.join(__dirname,'../db/db.json'),"utf8",function(error, notesData) {
+          if(error) {
+              console.log(error)
+            
+          }
+        if (notesData.length === 0) {
+            notes.id = 1
+        }
+        else {
+        notes.id = notesData[notesData.length -1].id + 1
+        }
+
+        fs.writeFile(path.join(__dirname,'../db/db.json'), notesData, function(error) {
+            if(error) {
+                console.log(error)
+            }
+        }
+        )
+
+      });
+      
+      
       res.json(true);
     
   });
@@ -27,6 +46,12 @@ module.exports = (app) => {
         console.log(notes)
     const foundIndex = notesData.findIndex((el) => el.id = notes)
     notesData.splice(foundIndex, 1)
+    fs.writeFile(path.join(__dirname,'../db/db.json'), notesData, function(error) {
+        if(error) {
+            console.log(error)
+        }
+    }
+    )
       res.json(true);
   });
 
