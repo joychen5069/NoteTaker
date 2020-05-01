@@ -23,17 +23,26 @@ module.exports = (app) => {
         }
 
         //read the JSON files
-        fs.readFile(path.join(__dirname, '../db/db.json'), "utf8", function(error, notesData) {
+        fs.readFile(path.join(__dirname, '../db/db.json'), "utf8", function (error, notesData) {
             if (error) {
                 console.log(error)
             }
 
-            //write to JSON file so notes retain unless deleted
+            if(notesData === null) {
+                fs.writeFile(path.join(__dirname, '../db/db.json'), notesData, "utf8", function (error) {
+
+                    if (error) {
+                        console.log(error)
+                    }
+                }
+                )
+            }
             else {
-            obj = JSON.parse(notesData)
-            obj.push(notes)
-            json = JSON.stringify(obj)
-    
+            
+            //write to JSON file so notes retain unless deleted
+           
+            json = JSON.stringify(notes)
+
             fs.writeFile(path.join(__dirname, '../db/db.json'), json, "utf8", function (error) {
 
                 if (error) {
@@ -41,8 +50,9 @@ module.exports = (app) => {
                 }
             }
             )}
+        }
 
-        });
+        );
 
         notesData.push(notes);
         res.json(true);
@@ -53,7 +63,7 @@ module.exports = (app) => {
     app.delete('/api/notes/:id', (req, res) => {
         const notes = req.params.id;
         console.log(notes)
-        
+
         //find ID and delete based on ID
         const foundIndex = notesData.findIndex((el) => el.id = notes)
         notesData.splice(foundIndex, 1)
