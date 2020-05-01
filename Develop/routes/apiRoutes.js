@@ -11,9 +11,15 @@ module.exports = (app) => {
   app.post('/api/notes', (req, res) => {
     const notes = req.body;
         console.log(notesData)
+    if (notesData.length === 0) {
+        notes.id = 1
+    }
+    else {
     notes.id = notesData[notesData.length -1].id + 1
+    }
       notesData.push(notes);
       res.json(true);
+    
   });
 
   app.delete('/api/notes/:id', (req, res) => {
