@@ -16,7 +16,7 @@ module.exports = (app) => {
 
         //if user deletes all data, make sure they can still add notes
         if (notesData.length === 0) {
-            notes.id = 1
+            notes.id = 0
         }
         else {
             notes.id = notesData[notesData.length - 1].id + 1
