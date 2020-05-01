@@ -1,10 +1,11 @@
 # Welcome to my Note Taking application
 
-[![JavScript](https://img.shields.io/badge/Made%20With-JavaScript-blue.svg)](https://shields.io/)  
+[![JavaScript](https://img.shields.io/badge/Made%20With-JavaScript-blue.svg)](https://shields.io/)  
+[![NodeJs](https://img.shields.io/badge/Made%20With-NodeJs-green.svg)](https://shields.io/) 
   
 ## Description
   
-This application, powered by JavaScript and Node.js, can produce and delete notes to your liesure. You can view previously saved notes as well, however, you cannot edit any notes. 
+Everyone takes notes. Whether they scrible it down on a piece of paper, or quickly type on their phone, or even open a notepad document on their computer. Here is how to store all of those notes in one place! This application, powered by JavaScript and Node.js, can produce and delete notes to your liesure. You can view previously saved notes as well, however, you cannot edit any notes. 
 
 ## User Story
 
