@@ -14,6 +14,7 @@ module.exports = (app) => {
         const notes = req.body;
         console.log(notesData)
 
+        //if user deletes all data, make sure they can still add notes
         if (notesData.length === 0) {
             notes.id = 1
         }
@@ -21,18 +22,25 @@ module.exports = (app) => {
             notes.id = notesData[notesData.length - 1].id + 1
         }
 
-        fs.readFile(path.join(__dirname, '../db/db.json'), "utf8", function (error, notesData) {
+        //read the JSON files
+        fs.readFile(path.join(__dirname, '../db/db.json'), "utf8", function(error, notesData) {
             if (error) {
                 console.log(error)
             }
 
+            //write to JSON file so notes retain unless deleted
+            else {
+            obj = JSON.parse(notesData)
+            obj.push(notes)
+            json = JSON.stringify(obj)
+    
+            fs.writeFile(path.join(__dirname, '../db/db.json'), json, "utf8", function (error) {
 
-            fs.writeFile(path.join(__dirname, '../db/db.json'), notesData, "utf8", function (error) {
                 if (error) {
                     console.log(error)
                 }
             }
-            )
+            )}
 
         });
 
@@ -41,11 +49,15 @@ module.exports = (app) => {
 
     });
 
+    //delete files
     app.delete('/api/notes/:id', (req, res) => {
         const notes = req.params.id;
         console.log(notes)
+        
+        //find ID and delete based on ID
         const foundIndex = notesData.findIndex((el) => el.id = notes)
         notesData.splice(foundIndex, 1)
+
         fs.writeFile(path.join(__dirname, '../db/db.json'), notesData, function (error) {
             if (error) {
                 console.log(error)
